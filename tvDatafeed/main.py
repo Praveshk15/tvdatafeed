@@ -271,9 +271,9 @@ class TvDatafeed:
                 )
                 time.sleep(5)
 #             self.service=Service(self.chromedriver_path)
-            service = Service('/usr/lib/chromium-browser/chromedriver')
+#             service = Service('/usr/lib/chromium-browser/chromedriver')
             driver = webdriver.Chrome(
-                service, desired_capabilities=caps, options=options
+                self.chromedriver_path, desired_capabilities=caps, options=options
             )
 
             logger.debug("opening https://in.tradingview.com ")
