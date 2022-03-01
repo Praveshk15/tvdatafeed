@@ -12,6 +12,8 @@ import time
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from websocket import create_connection
 import sys
@@ -233,6 +235,10 @@ class TvDatafeed:
         logger.info("refreshing tradingview token using selenium")
         logger.debug("launching chrome")
         options = Options()
+        options.add_argument("--headless")
+        options.add_argument("--start-maximized")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-gpu")
 
         if self.__automatic_login:
             options.add_argument("--headless")
@@ -264,9 +270,9 @@ class TvDatafeed:
                     "opening browser. Press enter once lgged in return back and press 'enter'. \n\nDO NOT CLOSE THE BROWSER"
                 )
                 time.sleep(5)
-
+            self.service=Service(self.chromedriver_path)
             driver = webdriver.Chrome(
-                self.chromedriver_path, desired_capabilities=caps, options=options
+                self.service, desired_capabilities=caps, options=options
             )
 
             logger.debug("opening https://in.tradingview.com ")
