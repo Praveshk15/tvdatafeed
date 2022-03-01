@@ -283,7 +283,7 @@ class TvDatafeed:
             return driver
 
         except Exception as e:
-            print(e)
+            print(type(e).__name__,e.__traceback__.tb_lineno)
             driver.quit()
             logger.error(e)
 
