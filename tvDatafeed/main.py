@@ -270,9 +270,10 @@ class TvDatafeed:
                     "opening browser. Press enter once lgged in return back and press 'enter'. \n\nDO NOT CLOSE THE BROWSER"
                 )
                 time.sleep(5)
-            self.service=Service(self.chromedriver_path)
+#             self.service=Service(self.chromedriver_path)
+            service = Service('/usr/lib/chromium-browser/chromedriver')
             driver = webdriver.Chrome(
-                self.service, desired_capabilities=caps, options=options
+                service, desired_capabilities=caps, options=options
             )
 
             logger.debug("opening https://in.tradingview.com ")
