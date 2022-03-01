@@ -283,6 +283,7 @@ class TvDatafeed:
             return driver
 
         except Exception as e:
+            print(e)
             driver.quit()
             logger.error(e)
 
